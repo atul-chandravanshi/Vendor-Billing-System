@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookeiparser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "vendor-billing-system-domc.vercel.app",
     credentials: true,
   })
 );

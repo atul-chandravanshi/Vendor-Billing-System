@@ -104,23 +104,5 @@ const checkAuth = async (req, res) => {
   }
 };
 
-const updateProfile = async (req, res) => {
-  try {
-    const profilePic = req.file?.path;
-    const userId = req.user._id;
 
-    if (!profilePic) {
-      return res.status(400).json({ message: "Profile Pic is required" });
-    }
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { profilePic: profilePic },
-      { new: true }
-    );
-    res.status(200).json({ updatedUser });
-  } catch (error) {
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
-module.exports = { signUp, signIn, signOut, checkAuth, updateProfile };
+module.exports = { signUp, signIn, signOut, checkAuth};

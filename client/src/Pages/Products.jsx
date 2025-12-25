@@ -59,7 +59,7 @@ const Products = () => {
       if (editId) {
         
         const response = await axios.put(
-          `https://vendor-billing-system.onrender.com/product/update-product/${editId}`,
+          `http://localhost:8000/product/update-product/${editId}`,
           dataToSend,
           { withCredentials: true }
         );
@@ -76,7 +76,7 @@ const Products = () => {
       } else {
    
         const response = await axios.post(
-          "https://vendor-billing-system.onrender.com/product/create-product",
+          "http://localhost:8000/product/create-product",
           dataToSend,
           { withCredentials: true }
         );
@@ -122,7 +122,7 @@ const Products = () => {
 
     try {
       await axios.delete(
-        `https://vendor-billing-system.onrender.com/product/delete-product/${productId}`,
+        `http://localhost:8000/product/delete-product/${productId}`,
         { withCredentials: true }
       );
 
@@ -151,7 +151,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://vendor-billing-system.onrender.com/product/get-products",
+          "http://localhost:8000/product/get-products",
           { withCredentials: true }
         );
         setProducts(response.data);
@@ -186,22 +186,20 @@ const Products = () => {
       <div className="p-4 md:p-6 lg:p-8 max-w-7xl mx-auto">
         <Navbar />
 
-        
         <div className="mb-8 max-md:ml-9">
           <div className="flex items-center space-x-3 mb-2">
             <div className="p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl">
               <Package className="w-6 h-6 text-white" />
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
-              <h1 className="max-md:ml-10"> Product </h1>Management
-            </h1>
+            <div className="text-2xl md:text-4xl font-bold text-gray-800">
+              <h1 className="md:ml-2"> Product Management</h1>
+            </div>
           </div>
           <p className="text-gray-600 ml-1 max-md:ml-4">
             Add, edit, and manage your inventory
           </p>
         </div>
 
-       
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-gray-800">
@@ -219,7 +217,6 @@ const Products = () => {
 
           <form onSubmit={handleAddOrUpdate}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-             
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Product Name
@@ -235,7 +232,6 @@ const Products = () => {
                 />
               </div>
 
-            
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Price (₹)
@@ -254,7 +250,6 @@ const Products = () => {
               </div>
             </div>
 
-            
             <div className="mb-6">
               <label className="block text-sm font-semibold text-gray-700 mb-3">
                 Quantity
@@ -296,7 +291,6 @@ const Products = () => {
               </div>
             </div>
 
-       
             <div className="flex gap-4">
               <button
                 type="submit"
@@ -328,9 +322,7 @@ const Products = () => {
           </form>
         </div>
 
-      
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-         
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-gray-800">

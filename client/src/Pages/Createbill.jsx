@@ -90,7 +90,7 @@ const CreateBill = () => {
     if (amount <= 500) return 0;
     if (amount <= 1000) return amount * 0.05;
     if (amount <= 2000) return amount * 0.18;
-    return amount * 0.3;
+    return amount * 0.3;  
   };
 
   const gst = calculateGST(subtotal);

@@ -31,6 +31,8 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
   };
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +48,9 @@ const Register = () => {
     } else if (!formData.phone) {
       toast("⚠️ Phone number is required");
       return;
+    } else if (!emailRegex.test(formData.email)) {
+    toast("⚠️ Invalid email format");
+    return;
     } else if (!formData.password) {
       toast("⚠️ Password is required");
       return;
@@ -55,7 +60,7 @@ const Register = () => {
     }
     try {
       const response = await axios.post(
-        "https://vendor-billing-system.onrender.com/auth/signup",
+        "http://localhost:8000/auth/signup",
         formData,
         { withCredentials: true }
       );
@@ -74,9 +79,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-      
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-12 items-center justify-center relative overflow-hidden">
-        
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse delay-700"></div>
@@ -116,10 +119,8 @@ const Register = () => {
         </div>
       </div>
 
-      
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6">
         <div className="w-full max-w-md">
-     
           <div className="lg:hidden text-center mb-6">
             <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl mb-3 shadow-lg">
               <ShoppingCart className="w-7 h-7 text-white" />
@@ -134,7 +135,6 @@ const Register = () => {
             </div>
 
             <div className="space-y-3">
-             
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   Owner Name
@@ -147,6 +147,7 @@ const Register = () => {
                     type="text"
                     name="ownerName"
                     placeholder="Full Name"
+                    maxLength={30}
                     value={formData.ownerName}
                     className="w-full pl-10 pr-3 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all outline-none hover:border-gray-300"
                     onChange={handleChange}
@@ -154,7 +155,6 @@ const Register = () => {
                 </div>
               </div>
 
-              
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   Shop Name
@@ -166,6 +166,7 @@ const Register = () => {
                   <input
                     type="text"
                     name="shopName"
+                    maxLength={30}
                     placeholder="Your Shop Name"
                     value={formData.shopName}
                     className="w-full pl-10 pr-3 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all outline-none hover:border-gray-300"
@@ -174,7 +175,6 @@ const Register = () => {
                 </div>
               </div>
 
-              
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   Email Address
@@ -194,7 +194,6 @@ const Register = () => {
                 </div>
               </div>
 
-              
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   Phone Number
@@ -204,8 +203,9 @@ const Register = () => {
                     <Phone className="h-4 w-4 text-gray-400 group-focus-within:text-purple-500 transition-colors" />
                   </div>
                   <input
-                    type="tel"
+                    type="Number"
                     name="phone"
+                    maxLength={12}
                     placeholder="+91 1234567890"
                     value={formData.phone}
                     className="w-full pl-10 pr-3 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all outline-none hover:border-gray-300"
@@ -214,7 +214,6 @@ const Register = () => {
                 </div>
               </div>
 
-             
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   Password
@@ -234,7 +233,6 @@ const Register = () => {
                 </div>
               </div>
 
-              
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   Confirm Password
@@ -262,7 +260,6 @@ const Register = () => {
               </button>
             </div>
 
-            
             <p className="mt-4 text-center text-xs text-gray-600">
               Already have an account?{" "}
               <a

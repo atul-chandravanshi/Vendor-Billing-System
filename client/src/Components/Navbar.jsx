@@ -13,7 +13,7 @@ const Navbar = () => {
   
   const handleLogOut = async () => {
     const response = await axios.post(
-      "https://vendor-billing-system.onrender.com/auth/signout",
+      "http://localhost:8000/auth/signout",
       {},
       { withCredentials: true }
     );

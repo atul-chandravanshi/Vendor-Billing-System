@@ -55,7 +55,7 @@ const Register = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:8000/auth/signup",
+        "https://vendor-billing-system.onrender.com/auth/signup",
         formData,
         { withCredentials: true }
       );

@@ -13,30 +13,13 @@ const Navbar = () => {
   
   const handleLogOut = async () => {
     const response = await axios.post(
-      "http://localhost:8000/auth/signout",
+      "https://vendor-billing-system.onrender.com/auth/signout",
       {},
       { withCredentials: true }
     );
     toast.success(response.data.message);
     navigate("/");
   };
-
-  
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/auth/checkauth",
-          { withCredentials: true }
-        );
-        setUser(response.data);
-      } catch (error) {
-        toast.error("Session expired");
-        navigate("/");
-      }
-    };
-    fetchUser();
-  }, []);
 
   return (
     <nav className="bg-white rounded-2xl shadow-md p-4 mb-8">

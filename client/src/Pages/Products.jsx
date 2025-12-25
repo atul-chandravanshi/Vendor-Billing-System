@@ -59,7 +59,7 @@ const Products = () => {
       if (editId) {
         
         const response = await axios.put(
-          `http://localhost:8000/product/update-product/${editId}`,
+          `https://vendor-billing-system.onrender.com/product/update-product/${editId}`,
           dataToSend,
           { withCredentials: true }
         );
@@ -76,7 +76,7 @@ const Products = () => {
       } else {
    
         const response = await axios.post(
-          "http://localhost:8000/product/create-product",
+          "https://vendor-billing-system.onrender.com/product/create-product",
           dataToSend,
           { withCredentials: true }
         );
@@ -122,7 +122,7 @@ const Products = () => {
 
     try {
       await axios.delete(
-        `http://localhost:8000/product/delete-product/${productId}`,
+        `https://vendor-billing-system.onrender.com/product/delete-product/${productId}`,
         { withCredentials: true }
       );
 
@@ -151,7 +151,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/product/get-products",
+          "https://vendor-billing-system.onrender.com/product/get-products",
           { withCredentials: true }
         );
         setProducts(response.data);
